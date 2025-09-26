@@ -2,15 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>SC Detection Circuit Files</title>
+  <title>SC Detection Circuit - Files</title>
   <style>
-    body { font-family: sans-serif; max-width: 800px; margin: 2rem auto; }
-    h1 { color: #333; }
-    a { display: block; margin: 0.5rem 0; color: #1a73e8; text-decoration: none; }
+    body { font-family: 'Droid Sans', sans-serif; max-width: 800px; margin: 2rem auto; line-height: 1.6; }
+    h1 { color: #333; margin-bottom: 1rem; }
+    a { display: block; margin: 0.5rem 0; color: #1a73e8; text-decoration: none; font-size: 18px; font-weight: 300; }
     a:hover { text-decoration: underline; }
   </style>
+  
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YOUR_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YOUR_MEASUREMENT_ID');
+  </script>
 </head>
 <body>
+
   <h1>SC Detection Circuit - Files</h1>
   <div id="pdf-list">Loading files...</div>
 
@@ -26,10 +36,23 @@
         container.innerHTML = '';
         files.filter(f => f.name.endsWith('.pdf')).forEach(file => {
           const a = document.createElement('a');
-          // Use raw.githubusercontent.com URL to open PDF in browser
+
+          // Raw GitHub URL for in-browser PDF viewing
           a.href = file.html_url.replace('github.com', 'raw.githubusercontent.com').replace('/blob', '');
           a.target = '_blank';
           a.textContent = file.name;
+
+          // GA4 tracking per PDF
+          a.onclick = () => {
+            gtag('event', 'click', {
+              'event_category': 'PDF View',
+              'event_label': file.name,
+              'utm_source': 'google_site',
+              'utm_medium': 'projects',
+              'utm_campaign': 'research_link'
+            });
+          };
+
           container.appendChild(a);
         });
       })
