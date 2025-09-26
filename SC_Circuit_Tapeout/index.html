@@ -1,1 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SC Detection Circuit - Files</title>
+  <style>
+    body { font-family: 'Droid Sans', sans-serif; max-width: 800px; margin: 2rem auto; line-height: 1.6; }
+    h1 { color: #333; margin-bottom: 2rem; }
+    .btn {
+      display: inline-block;
+      margin: 0.5rem 0;
+      padding: 0.6rem 1.2rem;
+      background-color: #2563eb; /* Tailwind blue-600 */
+      color: #fff;
+      border-radius: 0.5rem;
+      font-size: 16px;
+      font-weight: 300;
+      text-decoration: none;
+      transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+    .btn:hover {
+      background-color: #1d4ed8; /* Tailwind blue-700 */
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: 1px solid #ccc;
+      margin-top: 1rem;
+    }
+  </style>
+  
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y2D22DL9PS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Y2D22DL9PS');
+  </script>
+</head>
+<body>
 
+  <h1>SC Detection Circuit - Files</h1>
+
+  <!-- PDF Buttons -->
+  <a href="#" class="btn" onclick="showPDF('Project.pdf', 'Project.pdf'); return false;">
+    📄 Project.pdf
+  </a>
+
+
+  <!-- PDF Preview -->
+  <iframe id="pdf-viewer" src=""></iframe>
+
+  <script>
+    function showPDF(filePath, fileName) {
+      // Load PDF in iframe
+      document.getElementById('pdf-viewer').src = filePath;
+
+      // GA4 tracking
+      gtag('event', 'click', {
+        'event_category': 'PDF View',
+        'event_label': fileName,
+        'utm_source': 'website',
+        'utm_medium': 'projects',
+        'utm_campaign': 'research_files'
+      });
+    }
+  </script>
+
+</body>
+</html>
