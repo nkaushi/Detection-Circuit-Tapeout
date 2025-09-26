@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SC Detection Circuit Files</title>
+  <style>
+    body { font-family: sans-serif; max-width: 800px; margin: 2rem auto; }
+    h1 { color: #333; }
+    a { display: block; margin: 0.5rem 0; color: #1a73e8; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>SC Detection Circuit - Files</h1>
+  <div id="pdf-list">Loading files...</div>
+
+  <script>
+    const repoOwner = 'nkaushi';
+    const repoName = 'Detection-Circuit-Tapeout';
+    const folderPath = 'SC Circuit Project';
+    const container = document.getElementById('pdf-list');
+
+    fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${encodeURIComponent(folderPath)}`)
+      .then(res => res.json())
+      .then(files => {
+        container.innerHTML = '';
+        files.filter(f => f.name.endsWith('.pdf')).forEach(file => {
+          const a = document.createElement('a');
+          // Use raw.githubusercontent.com URL to open PDF in browser
+          a.href = file.html_url.replace('github.com', 'raw.githubusercontent.com').replace('/blob', '');
+          a.target = '_blank';
+          a.textContent = file.name;
+          container.appendChild(a);
+        });
+      })
+      .catch(err => {
+        container.textContent = 'Failed to load files.';
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
